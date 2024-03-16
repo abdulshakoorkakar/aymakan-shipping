@@ -1,0 +1,233 @@
+@media screen and ( min-width: 783px ) {
+	.aymakan-shipping-form article table {
+		min-width: 700px;
+	}
+}
+.aymakan-shipping-form:not(.wc-backbone-modal-main) {
+	padding-right: 20px;
+}
+.aymakan-shipping-form:not(.wc-backbone-modal-main) article {
+	border: 1px solid #c3c4c7;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+	background-color: #ffffff;
+	margin-bottom: 15px;
+}
+.aymakan-shipping-form article .aymakan-toggle-header {
+	display: flex;
+	padding: 15px 10px;
+	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
+	width: 100%;
+	border: none;
+	border-radius: 0;
+	background-color: transparent;
+}
+.aymakan-shipping-form article .aymakan-toggle-header path {
+	display:none;
+}
+.aymakan-shipping-form article.expanded-content .toggle-opened,
+.aymakan-shipping-form article:not(.expanded-content) .toggle-closed {
+	display:block;
+}
+.aymakan-shipping-form article h3.order-title {
+	margin: 0;
+}
+.aymakan-shipping-form .aymakan-toggle-content {
+	position: relative;
+	padding: 0 10px 20px;
+	display: none;
+	border-top: 1px solid #c3c4c7;
+}
+.aymakan-shipping-form article footer {
+	padding: 8px 10px;
+}
+.aymakan-shipping-form article table {
+	border: none;
+	box-shadow: none;
+}
+.aymakan-shipping-form article table.widefat thead th {
+	font-weight: bold;
+	font-size: 18px;
+	border-bottom: none;
+}
+.aymakan-shipping-form article table.widefat tbody td,
+.aymakan-shipping-form article table.widefat thead th {
+	width: 50%;
+	vertical-align: top;
+}
+.aymakan-shipping-form article table.widefat tbody td:last-child,
+.aymakan-shipping-form article table.widefat thead th:last-child {
+	text-align: left;
+}
+.aymakan-shipping-form .form-row input[type="number"],
+.aymakan-shipping-form .form-row input[type="tel"],
+.aymakan-shipping-form .form-row input[type="text"],
+.aymakan-shipping-form .form-row input[type="url"],
+.aymakan-shipping-form .form-row select,
+.aymakan-shipping-form .form-row textarea {
+	line-height: 22px;
+	padding: 5px;
+	height: 34px;
+	width: 100%;
+}
+.aymakan_show_modal.button,
+.aymakan_show_modal.button:hover {
+	color: #444444;
+	font-size: 14px;
+	font-weight: 400;
+	border-color: #f1d173;
+	padding: 10px 20px 10px 50px;
+	background: #fffcf1 url("../images/aymakan-icon.png") no-repeat 14px center;
+	background-size: 10%;
+	margin-top: 10px;
+}
+.aymakan_show_modal.button:hover {
+	background-color: #fffcf1;
+}
+.aymakan-shipping-form,
+.aymakan-shipping-form .desc_tip {
+	position: relative;
+}
+.aymakan-shipping-form .desc_tip label::after {
+	font-family: Dashicons;
+	speak: none;
+	font-weight: 400;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	margin: 0;
+	text-indent: 0;
+	text-align: center;
+	content: "";
+	cursor: help;
+	font-size: 20px;
+	display: inline-block;
+	vertical-align: middle;
+}
+.aymakan-shipping-form .desc_tip .woocommerce-input-wrapper {
+	display: block;
+	position: relative;
+}
+.aymakan-shipping-form .desc_tip .description {
+	display: none;
+	position: absolute;
+	color: #ffffff;
+	font-size: .8em;
+	width: 150px;
+	background: #333333;
+	text-align: center;
+	border-radius: 3px;
+	padding: .618em 1em;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+	bottom: calc(100% + 37px);
+	left: 0;
+}
+.aymakan-shipping-form .desc_tip .description::after {
+	content: "";
+	position: absolute;
+	border-color: transparent;
+	border-style: solid;
+	border-width: 6px;
+	height: 0;
+	width: 0;
+	margin-top: 6px;
+	margin-right: -6px;
+	border-top-color: #333333;
+	display: block;
+	left: 10%;
+}
+.aymakan-shipping-form .desc_tip label:hover ~ .woocommerce-input-wrapper .description {
+	display: block;
+}
+.aymakan-shipping-form .notification {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	z-index: 20;
+}
+.aymakan-shipping-form .notification span {
+	display: block;
+	background-color: rgba(138, 48, 48, 0.9);
+	color: #ffffff;
+	padding: 10px 20px 10px 40px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+	position: relative;
+}
+.aymakan-shipping-form .notification span::before {
+	font-family: Dashicons;
+	display: inline-block;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 8px;
+	position: absolute;
+	font-size: 22px;
+}
+.aymakan-shipping-form .notification span.aymakan-shipment-success {
+	background-color: rgba(55, 138, 48, 0.9);
+}
+.aymakan-shipping-form .has-error {
+	border-color: red !important;
+}
+.aymakan-shipping-form.aymakan-loading::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(255,255,255,0.8);
+	display: block;
+	z-index: 10;
+}
+.aymakan-shipping-form.aymakan-loading::before {
+	content: "";
+	height: 2em;
+	width: 2em;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -.5em;
+	margin-top: -.5em;
+	display: block;
+	background-image: url('../../../woocommerce/assets/images/icons/loader.svg') !important;
+	background-position: center center;
+	z-index: 11;
+	color: #ccc;
+	-webkit-animation: rotating 1s linear infinite;
+	-moz-animation: rotating 1s linear infinite;
+	-ms-animation: rotating 1s linear infinite;
+	-o-animation: rotating 1s linear infinite;
+	animation: rotating 1s linear infinite;
+}
+@-webkit-keyframes rotating {
+	from {
+		-webkit-transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
+		-o-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+@keyframes rotating {
+	from {
+		-ms-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	to {
+		-ms-transform: rotate(360deg);
+		-moz-transform: rotate(360deg);
+		-webkit-transform: rotate(360deg);
+		-o-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}

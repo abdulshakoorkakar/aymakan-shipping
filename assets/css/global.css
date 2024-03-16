@@ -1,0 +1,148 @@
+#toplevel_page_aymakan-shipping-form-create-shipping {
+    display: none !important;
+}
+.widefat td .aymakan-btn {
+    padding-right: 10px;
+    border: 1px solid #ffcb05;
+    color: #333333;
+    position: relative;
+    padding-left: 35px;
+    background-color: transparent;
+    box-shadow: none !important;
+    outline: none !important;
+    overflow: hidden;
+    z-index: 4;
+    cursor: pointer;
+}
+.widefat td .aymakan-awb-btn.aymakan-btn {
+    border: 1px solid #2271b1;
+}
+.widefat td .aymakan-btn::before {
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    /* border-radius: 50px; */
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    background: url("../images/aymakan-icon.png") no-repeat center;
+    background-size: contain;
+}
+.widefat td .aymakan-btn.aymakan-shipping-create-btn::before {
+    background-color: #000;
+}
+.widefat td .aymakan-btn.aymakan-awb-btn::before {
+    width: 20px;
+    height: 20px;
+    background-image: url("../images/printer.svg");
+}
+.widefat td .aymakan-btn.aymakan-shipping-track-btn::before {
+    width: 20px;
+    height: 20px;
+    background-image: url("../images/icon-tracking.svg");
+}
+.widefat td .aymakan-btn.aymakan-shipping-track-btn {
+    border: 1px dashed #2271b1;
+}
+.widefat td .aymakan-btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 165px;
+    height: 165px;
+    background-color: #ffcb05;
+    border-color: transparent;
+    border-radius: 50%;
+    transform: translate(-10px, -70px) scale(0.1);
+    opacity: 0;
+    z-index: -1;
+    transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
+}
+.widefat td .aymakan-btn.aymakan-shipping-track-btn:after,
+.widefat td .aymakan-awb-btn.aymakan-btn:after {
+    background-color: #72baf5;
+}
+.widefat td .aymakan-btn:hover::after {
+    opacity: 1;
+    transform-origin: 100px 100px;
+    transform: scale(1) translate(-10px, -70px);
+}
+.aymakan-loading.aymakan-toggle-content,
+.aymakan-loading .wp-list-table {
+    position: relative;
+}
+.aymakan-loading.aymakan-toggle-content:after,
+.aymakan-loading .wp-list-table::after {
+    content: "";
+    position: absolute;
+    top: 50px;
+    left: 1px;
+    right: 1px;
+    bottom: 50px;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: block;
+    z-index: 10;
+}
+.aymakan-loading.aymakan-toggle-content:after {
+    top: 1px;
+    bottom: 1px;
+}
+.aymakan-loading.aymakan-toggle-content:before,
+.aymakan-loading .wp-list-table::before {
+    content: "";
+    height: 2em;
+    width: 2em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -.5em;
+    margin-top: -.5em;
+    display: block;
+    background-image: url("../../../woocommerce/assets/images/icons/loader.svg") !important;
+    background-position: center center;
+    z-index: 11;
+    color: #cccccc;
+    -webkit-animation: rotating 1s linear infinite;
+    -moz-animation: rotating 1s linear infinite;
+    -ms-animation: rotating 1s linear infinite;
+    -o-animation: rotating 1s linear infinite;
+    animation: rotating 1s linear infinite;
+}
+.aymakan-disable-btn {
+    opacity: 0.5;
+    pointer-events: none;
+}
+.aymakan-dropdown li {
+    position: relative;
+}
+.aymakan-dropdown li ul {
+    position: absolute;
+    background-color: #ffffff;
+    left: 0;
+    bottom: calc(100% + 3px);
+    width: 230px;
+    display: none;
+    z-index: 10;
+    border: 1px solid #c7dbeb;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 0;
+}
+.aymakan-dropdown li ul li a {
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid #c7dbeb;
+    display: block;
+}
+.aymakan-dropdown li ul li:last-child {
+    border-bottom: none;
+}
+.aymakan-dropdown li:hover ul {
+    display: block;
+}
+.aymakan-dropdown.has-error > li > span {
+    border-color: red !important;
+}

@@ -1,0 +1,342 @@
+# Copyright (C) 2024 Aymakan
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Aymakan Shipping 3.1.2\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/aymakan-shipping\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-02-07T08:12:28+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.9.0\n"
+"X-Domain: aymakan\n"
+
+#. Plugin Name of the plugin
+msgid "WooCommerce Aymakan Shipping"
+msgstr ""
+
+#. Description of the plugin
+msgid "WooCommerce Aymakan Shipping Carrier (Compatible with woocommerce 8.2 >)"
+msgstr ""
+
+#. Author of the plugin
+#: includes/class-aymakan-shipping-method.php:155
+msgid "Aymakan"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.aymakan.com"
+msgstr ""
+
+#: form/create-shipping.php:2
+#: includes/views/shipping-form.php:12
+#: includes/views/shipping-form.php:21
+msgid "Create Aymakan Shipping"
+msgstr ""
+
+#: form/create-shipping.php:28
+#: includes/views/shipping-form.php:32
+msgid "Customer Address Information"
+msgstr ""
+
+#: form/create-shipping.php:29
+#: includes/views/shipping-form.php:33
+msgid "Shipping Information"
+msgstr ""
+
+#: form/create-shipping.php:40
+#: includes/views/shipping-form.php:49
+msgid "Create Shipping"
+msgstr ""
+
+#: includes/class-aymakan-shipping-create.php:152
+msgid "Please select an order."
+msgstr ""
+
+#: includes/class-aymakan-shipping-create.php:276
+msgid "Shipment Already Created"
+msgstr ""
+
+#: includes/class-aymakan-shipping-create.php:398
+msgid "Create Aymakan Shipments"
+msgstr ""
+
+#: includes/class-aymakan-shipping-create.php:479
+msgid "Create Shipment"
+msgstr ""
+
+#: includes/class-aymakan-shipping-create.php:482
+msgid "Print Airway Bill"
+msgstr ""
+
+#: includes/class-aymakan-shipping-create.php:490
+msgid "Tracking"
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:65
+#: includes/class-aymakan-shipping-form.php:66
+msgid "Name"
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:68
+msgid "Enter Customer Name."
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:74
+#: includes/class-aymakan-shipping-form.php:75
+msgid "Email"
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:77
+msgid "Enter Customer Email."
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:83
+#: includes/class-aymakan-shipping-form.php:84
+msgid "Phone"
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:86
+msgid "Enter Phone Number."
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:92
+#: includes/class-aymakan-shipping-form.php:93
+msgid "Address"
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:95
+msgid "Enter Address."
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:101
+#: includes/class-aymakan-shipping-form.php:102
+msgid "City"
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:105
+msgid "Select City."
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:110
+#: includes/class-aymakan-shipping-form.php:111
+msgid "Neighbourhood"
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:113
+msgid "Enter Neighbourhood."
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:130
+#: includes/class-aymakan-shipping-form.php:131
+msgid "Reference"
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:133
+msgid "Reference must be order number."
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:139
+#: includes/class-aymakan-shipping-form.php:140
+msgid "Order Total"
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:142
+msgid "Order grand total."
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:148
+#: includes/class-aymakan-shipping-form.php:149
+msgid "Is COD"
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:155
+msgid "If order is COD, then select Yes."
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:160
+#: includes/class-aymakan-shipping-form.php:161
+msgid "COD Amount"
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:163
+msgid "If order is COD, then COD amount is the amount Aymakan driver will be collecting from your customer."
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:169
+#: includes/class-aymakan-shipping-form.php:170
+msgid "Items"
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:172
+msgid "Number of items in the shipment."
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:178
+#: includes/class-aymakan-shipping-form.php:179
+msgid "Pieces"
+msgstr ""
+
+#: includes/class-aymakan-shipping-form.php:181
+msgid "Pieces in the shipment. For example, for a large orders, the items can be boxed in multiple cartons. The number of boxed cartons should be entered here."
+msgstr ""
+
+#: includes/class-aymakan-shipping-helper.php:104
+msgid "Select City"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:79
+msgid "Aymakan Shipping"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:80
+msgid "Safe, Reliable And express logistics & transport solutions."
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:145
+msgid "Enable/Disable"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:147
+msgid "Enable this shipping method"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:151
+msgid "Title"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:153
+msgid "This controls the title which the user sees during checkout."
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:158
+msgid "API Key"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:160
+msgid "The API key is available at Aymakan account in Integrations."
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:164
+msgid "Enable SDD (Same-Day Delivery)"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:166
+msgid "Please ensure that you have this service enabled by aymakan."
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:175
+msgid "Collection Name"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:177
+msgid "The collection name or any data below is related to your warehouse contact information. Here your dispatchers details can be provided."
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:181
+msgid "Collection Email"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:183
+msgid "The collection email or any data below is related to your warehouse contact information. Here your dispatchers details can be provided."
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:187
+msgid "Collection Phone"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:189
+msgid "Phone number for warehouse contact information."
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:194
+msgid "Collection Address"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:196
+msgid "The address from which Aymakan will be picking up the shipment."
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:201
+msgid "Collection City"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:203
+msgid "The city from which Aymakan will be picking up the shipment."
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:209
+msgid "Collection Neighbourhood"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:211
+msgid "The neighbourhood from which Aymakan will be picking up the shipment."
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:216
+msgid "Shipping Cost"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:218
+msgid "These costs will be show up on checkout page."
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:228
+msgid "Custom Cost"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:230
+msgid "If the custom cost is entered Aymakan will ignore it's automatic cost on checkout page."
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:235
+msgid "Testing"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:239
+msgid "Test Mode"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:241
+msgid "Check the checkbox for enabling test mode."
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:246
+msgid "Debug Log"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:248
+msgid "Enable logging"
+msgstr ""
+
+#. translators: %s Placeholder is for the file path where events are logged
+#: includes/class-aymakan-shipping-method.php:252
+msgid "Log Aymakan events, such as WebServices requests, inside %s."
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:259
+msgid "Webhook"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:263
+msgid "Order Status Webhook URL"
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:265
+msgid "Please insert this webhook URL into your Aymakan dashboard to ensure that your order status is updated."
+msgstr ""
+
+#: includes/class-aymakan-shipping-method.php:282
+msgid "Aymakan is a Saudi Arabia based courier service."
+msgstr ""
+
+#: includes/views/shipping-form.php:71
+msgid "Delete note"
+msgstr ""
+
+#: aymakan-shipping.php:104
+msgid "Add Shipping Zone"
+msgstr ""
