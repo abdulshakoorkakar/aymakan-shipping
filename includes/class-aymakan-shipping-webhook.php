@@ -28,7 +28,7 @@ class Aymakan_Shipping_Webhook
     /**
      *
      * @param $code
-     * @return string
+     * @return array
      */
     public function statusByCode($code)
     {
@@ -82,7 +82,7 @@ class Aymakan_Shipping_Webhook
     /**
      * Log the received data for debugging
      * @param $request
-     * @return WP_REST_Response
+     * @return void
      */
     public function handle_webhook($request)
     {

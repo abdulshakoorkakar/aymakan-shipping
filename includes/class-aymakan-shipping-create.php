@@ -11,7 +11,8 @@ class Aymakan_Shipping_Create
     {
         $this->helper = new Aymakan_Shipping_Helper();
 
-        $this->hpos_enabled = get_option('woocommerce_hpos_enabled', 'no');
+        // Check if High-performance order storage is enabled
+        $this->hpos_enabled = get_option('woocommerce_custom_orders_table_enabled', 'no');
 
         if ('no' !== $this->helper->get_option('enabled')) {
             add_action('woocommerce_admin_order_data_after_shipping_address', array($this, 'aymakan_render_html'), 10, 1);
@@ -31,7 +32,7 @@ class Aymakan_Shipping_Create
 
     private function setup_hooks()
     {
-
+        // If High-performance order storage is enabled use the new hooks
         if ($this->hpos_enabled === 'yes') {
             add_filter('bulk_actions-woocommerce_page_wc-orders', array($this, 'aymakan_bulk_shipment_actions'), 900, 2);
 
@@ -132,7 +133,15 @@ class Aymakan_Shipping_Create
     {
         $param = isset($_POST['data']) ? wp_parse_args($_POST['data']) : array();
 
-        if (!isset($param['id'])) {
+        $ids = [];
+
+        if (isset($param['id'])) {
+            $ids = $param['id'];
+        } else if(isset($param['post'])) {
+            $ids = $param['post'];
+        }
+
+        if (!$ids) {
             echo json_encode([
                 [
                     [
@@ -147,7 +156,7 @@ class Aymakan_Shipping_Create
 
         $letEncode = [];
         try {
-            foreach ($param['id'] as $id) {
+            foreach ($ids as $id) {
                 $order = wc_get_order($id);
 
                 $first_name = $order->get_shipping_first_name() ? $order->get_shipping_first_name() : $order->get_billing_first_name();
