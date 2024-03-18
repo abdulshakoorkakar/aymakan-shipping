@@ -5,7 +5,7 @@
  * Description: WooCommerce Aymakan Shipping Carrier (Compatible with woocommerce 8.2 >)
  * Author: Aymakan
  * Author URI: https://www.aymakan.com
- * Version: 3.1.2
+ * Version: 3.1.3
  * License: GPLv2 or later
  * Text Domain: aymakan
  * Domain Path: languages/
