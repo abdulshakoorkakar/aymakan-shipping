@@ -33,10 +33,13 @@ class Aymakan_Shipping_Webhook
     public function statusByCode($code)
     {
         $statuses = array(
+            'AY-0001' => ['status' => 'shipped', 'label' => 'AWB created at origin'],
+
             'AY-0005' => ['status' => 'completed', 'label' => 'Delivered'],
             'AY-0090' => ['status' => 'on-hold', 'label' => 'Hold for dispatch'],
             'AY-0050' => ['status' => 'on-hold', 'label' => 'On Hold'],
             'AY-0032' => ['status' => 'pending', 'label' => 'Pending'],
+
             'AY-0008' => ['status' => 'cancelled', 'label' => 'Returned'],
             'AY-0011' => ['status' => 'cancelled', 'label' => 'Cancelled'],
             'AY-0007' => ['status' => 'cancelled', 'label' => 'Cancelled'],
@@ -46,6 +49,7 @@ class Aymakan_Shipping_Webhook
             'AY-0091' => ['status' => 'cancelled', 'label' => 'Cancelled by Consignee'],
             'AY-0105' => ['status' => 'cancelled', 'label' => 'Cancelled By Shipper'],
             'AY-0107' => ['status' => 'cancelled', 'label' => 'Cancelled By Shipper'],
+
             'AY-0004' => ['status' => 'processing', 'label' => 'Out for Delivery'],
             'AY-0009' => ['status' => 'processing', 'label' => 'In Transit'],
             'AY-0059' => ['status' => 'processing', 'label' => 'Processing for RTO'],
@@ -75,7 +79,7 @@ class Aymakan_Shipping_Webhook
             'AY-0104' => ['status' => 'processing', 'label' => 'Received at Bisha warehouse'],
         );
 
-        return isset($statuses[$code]) ? $statuses[$code] : ['status' => 'processing', 'label' => 'Processing'];
+        return isset($statuses[$code]) ? $statuses[$code] : [];
     }
 
 
@@ -115,8 +119,8 @@ class Aymakan_Shipping_Webhook
         $order_id = $data['reference'];
         $status_code = $data['status'];
         $order = wc_get_order($order_id);
-        if ($order) {
-            $new_status = $this->statusByCode($status_code);
+        $new_status = $this->statusByCode($status_code);
+        if ($order && !empty($new_status)) {
             $order->update_status($new_status['status']);
             $note = sprintf(__('<strong>Aymakan Order Status</strong><br>%s.', 'aymakan'), $new_status['label']);
             $order->add_order_note($note);

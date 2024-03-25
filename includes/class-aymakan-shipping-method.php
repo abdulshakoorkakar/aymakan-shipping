@@ -250,7 +250,6 @@ class Aymakan_Shipping_Method extends WC_Shipping_Method
                 'description' => sprintf(
                     /* translators: %s Placeholder is for the file path where events are logged */
                     __('Log Aymakan events, such as WebServices requests, inside %s.', 'aymakan'),
-
                     '<code>woocommerce/logs/aymakan-' . sanitize_file_name(wp_hash('aymakan')) . '.txt</code>'
                 )
 
@@ -262,8 +261,8 @@ class Aymakan_Shipping_Method extends WC_Shipping_Method
             'webhook_url' => array(
                 'title' => __('Order Status Webhook URL', 'aymakan'),
                 'type' => 'text',
-                'description' => __('Please insert this webhook URL into your Aymakan dashboard to ensure that your order status is updated.', 'aymakan'),
-                'desc_tip' => true,
+                'description' => sprintf(
+                    __('Please insert this webhook URL into your Aymakan dashboard to ensure that your order status is updated. %s', 'aymakan'), '<code><br/>' . get_bloginfo('url') . '/wp-json/aymakan/status</code>'),
                 'disabled' => true,
                 'default' => get_bloginfo('url').'/wp-json/aymakan/status'
             ),

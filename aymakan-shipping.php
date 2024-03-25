@@ -11,7 +11,7 @@
  * Domain Path: languages/
  * Developer: Abdul Shakoor Kakar
  *
- * @since     3.1.2
+ * @since     3.1.3
  * @author    Aymakan
  * @package   aymakan-shipping
  * @license   GPL-2.0+
@@ -25,6 +25,7 @@ define('AYMAKAN_PATH', plugin_dir_path(__FILE__));
 define('AYMAKAN_BASE', plugin_basename(__FILE__));
 
 if (!class_exists('Aymakan_Main')) :
+
     /**
      * Aymakan main class.
      */
@@ -36,7 +37,7 @@ if (!class_exists('Aymakan_Main')) :
          *
          * @var string
          */
-        const VERSION = '3.1.2';
+        const VERSION = '3.1.3';
 
         /**
          * Instance of this class.
@@ -76,7 +77,6 @@ if (!class_exists('Aymakan_Main')) :
             include_once AYMAKAN_PATH . 'includes/class-aymakan-shipping-create.php';
             include_once AYMAKAN_PATH . 'includes/class-aymakan-shipping-webhook.php';
         }
-
 
         /**
          * @return void
