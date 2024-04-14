@@ -26,64 +26,6 @@ class Aymakan_Shipping_Webhook
     }
 
     /**
-     *
-     * @param $code
-     * @return array
-     */
-    public function statusByCode($code)
-    {
-        $statuses = array(
-            'AY-0001' => ['status' => 'shipped', 'label' => 'AWB created at origin'],
-
-            'AY-0005' => ['status' => 'completed', 'label' => 'Delivered'],
-            'AY-0090' => ['status' => 'on-hold', 'label' => 'Hold for dispatch'],
-            'AY-0050' => ['status' => 'on-hold', 'label' => 'On Hold'],
-            'AY-0032' => ['status' => 'pending', 'label' => 'Pending'],
-
-            'AY-0008' => ['status' => 'cancelled', 'label' => 'Returned'],
-            'AY-0011' => ['status' => 'cancelled', 'label' => 'Cancelled'],
-            'AY-0007' => ['status' => 'cancelled', 'label' => 'Cancelled'],
-            'AY-0014' => ['status' => 'cancelled', 'label' => 'Cancelled'],
-            'AY-0045' => ['status' => 'cancelled', 'label' => 'Cancelled'],
-            'AY-0051' => ['status' => 'cancelled', 'label' => 'Cancelled'],
-            'AY-0091' => ['status' => 'cancelled', 'label' => 'Cancelled by Consignee'],
-            'AY-0105' => ['status' => 'cancelled', 'label' => 'Cancelled By Shipper'],
-            'AY-0107' => ['status' => 'cancelled', 'label' => 'Cancelled By Shipper'],
-
-            'AY-0004' => ['status' => 'processing', 'label' => 'Out for Delivery'],
-            'AY-0009' => ['status' => 'processing', 'label' => 'In Transit'],
-            'AY-0059' => ['status' => 'processing', 'label' => 'Processing for RTO'],
-            'AY-0079' => ['status' => 'processing', 'label' => 'Processing for remote area'],
-            'AY-0094' => ['status' => 'processing', 'label' => 'MR-Processing for RTO'],
-            'AY-0100' => ['status' => 'processing', 'label' => 'Processing for RTO-External'],
-            'AY-0003' => ['status' => 'processing', 'label' => 'Received at Warehouse'],
-            'AY-0012' => ['status' => 'processing', 'label' => 'Received at Qassim hub'],
-            'AY-0017' => ['status' => 'processing', 'label' => 'Received Back in Warehouse (With number of delivery failed)'],
-            'AY-0026' => ['status' => 'processing', 'label' => 'Received at Riyadh Warehouse'],
-            'AY-0027' => ['status' => 'processing', 'label' => 'Received at Qaseem Warehouse'],
-            'AY-0030' => ['status' => 'processing', 'label' => 'Received at JED WH'],
-            'AY-0034' => ['status' => 'processing', 'label' => 'Received at DMM WH'],
-            'AY-0064' => ['status' => 'processing', 'label' => 'Received - Waiting'],
-            'AY-0065' => ['status' => 'processing', 'label' => 'Received - Address Validated'],
-            'AY-0072' => ['status' => 'processing', 'label' => 'RP-Received in WH'],
-            'AY-0080' => ['status' => 'processing', 'label' => 'Received at JAZ'],
-            'AY-0082' => ['status' => 'processing', 'label' => 'Received Tabuk warehouse'],
-            'AY-0083' => ['status' => 'processing', 'label' => 'Received Hail Warehouse'],
-            'AY-0086' => ['status' => 'processing', 'label' => 'Received At Taif warehouse'],
-            'AY-0088' => ['status' => 'processing', 'label' => 'Received in Clearing department'],
-            'AY-0096' => ['status' => 'processing', 'label' => 'Received at Hofuf Warehouse'],
-            'AY-0098' => ['status' => 'processing', 'label' => 'Received In HBT Station'],
-            'AY-0101' => ['status' => 'processing', 'label' => 'Received in Najran Station'],
-            'AY-0102' => ['status' => 'processing', 'label' => 'Received in Yanbu warehouse'],
-            'AY-0103' => ['status' => 'processing', 'label' => 'Received at Baha warehouse'],
-            'AY-0104' => ['status' => 'processing', 'label' => 'Received at Bisha warehouse'],
-        );
-
-        return isset($statuses[$code]) ? $statuses[$code] : [];
-    }
-
-
-    /**
      * Log the received data for debugging
      * @param $request
      * @return void
@@ -120,11 +62,68 @@ class Aymakan_Shipping_Webhook
         $status_code = $data['status'];
         $order = wc_get_order($order_id);
         $new_status = $this->statusByCode($status_code);
+
         if ($order && !empty($new_status)) {
             $order->update_status($new_status['status']);
             $note = sprintf(__('<strong>Aymakan Order Status</strong><br>%s.', 'aymakan'), $new_status['label']);
             $order->add_order_note($note);
+            unset($data['shipping']);
+            update_post_meta($order_id, 'aymakan_shipping_status', json_encode($data));
         }
+    }
+
+    /**
+     *
+     * @param $code
+     * @return array
+     */
+    public function statusByCode($code)
+    {
+        $statuses = array(
+            'AY-0001' => ['status' => 'shipped', 'label' => 'AWB created at origin'],
+            'AY-0005' => ['status' => 'completed', 'label' => 'Delivered'],
+            'AY-0090' => ['status' => 'processing', 'label' => 'Hold for dispatch'],
+            'AY-0050' => ['status' => 'processing', 'label' => 'On Hold'],
+            'AY-0032' => ['status' => 'pending', 'label' => 'Pending'],
+            'AY-0008' => ['status' => 'processing', 'label' => 'Returned'],
+            'AY-0011' => ['status' => 'processing', 'label' => 'Cancelled'],
+            'AY-0007' => ['status' => 'processing', 'label' => 'Cancelled'],
+            'AY-0014' => ['status' => 'processing', 'label' => 'Cancelled'],
+            'AY-0045' => ['status' => 'processing', 'label' => 'Cancelled'],
+            'AY-0051' => ['status' => 'processing', 'label' => 'Cancelled'],
+            'AY-0091' => ['status' => 'processing', 'label' => 'Cancelled by Consignee'],
+            'AY-0105' => ['status' => 'processing', 'label' => 'Cancelled By Shipper'],
+            'AY-0107' => ['status' => 'processing', 'label' => 'Cancelled By Shipper'],
+            'AY-0004' => ['status' => 'shipped', 'label' => 'Out for Delivery'],
+            'AY-0009' => ['status' => 'shipped', 'label' => 'In Transit'],
+            'AY-0059' => ['status' => 'shipped', 'label' => 'Processing for RTO'],
+            'AY-0079' => ['status' => 'shipped', 'label' => 'Processing for remote area'],
+            'AY-0094' => ['status' => 'shipped', 'label' => 'MR-Processing for RTO'],
+            'AY-0100' => ['status' => 'shipped', 'label' => 'Processing for RTO-External'],
+            'AY-0003' => ['status' => 'shipped', 'label' => 'Received at Warehouse'],
+            'AY-0012' => ['status' => 'shipped', 'label' => 'Received at Qassim hub'],
+            'AY-0017' => ['status' => 'shipped', 'label' => 'Received Back in Warehouse (With number of delivery failed)'],
+            'AY-0026' => ['status' => 'shipped', 'label' => 'Received at Riyadh Warehouse'],
+            'AY-0027' => ['status' => 'shipped', 'label' => 'Received at Qaseem Warehouse'],
+            'AY-0030' => ['status' => 'shipped', 'label' => 'Received at JED WH'],
+            'AY-0034' => ['status' => 'shipped', 'label' => 'Received at DMM WH'],
+            'AY-0064' => ['status' => 'shipped', 'label' => 'Received - Waiting'],
+            'AY-0065' => ['status' => 'shipped', 'label' => 'Received - Address Validated'],
+            'AY-0072' => ['status' => 'shipped', 'label' => 'RP-Received in WH'],
+            'AY-0080' => ['status' => 'shipped', 'label' => 'Received at JAZ'],
+            'AY-0082' => ['status' => 'shipped', 'label' => 'Received Tabuk warehouse'],
+            'AY-0083' => ['status' => 'shipped', 'label' => 'Received Hail Warehouse'],
+            'AY-0086' => ['status' => 'shipped', 'label' => 'Received At Taif warehouse'],
+            'AY-0088' => ['status' => 'shipped', 'label' => 'Received in Clearing department'],
+            'AY-0096' => ['status' => 'shipped', 'label' => 'Received at Hofuf Warehouse'],
+            'AY-0098' => ['status' => 'shipped', 'label' => 'Received In HBT Station'],
+            'AY-0101' => ['status' => 'shipped', 'label' => 'Received in Najran Station'],
+            'AY-0102' => ['status' => 'shipped', 'label' => 'Received in Yanbu warehouse'],
+            'AY-0103' => ['status' => 'shipped', 'label' => 'Received at Baha warehouse'],
+            'AY-0104' => ['status' => 'shipped', 'label' => 'Received at Bisha warehouse'],
+        );
+
+        return isset($statuses[$code]) ? $statuses[$code] : [];
     }
 }
 

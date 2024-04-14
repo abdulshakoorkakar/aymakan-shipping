@@ -21,8 +21,13 @@ class Aymakan_Shipping_Create
             add_action('wp_ajax_nopriv_aymakan_manual_shipping_create', array($this, 'aymakan_manual_shipping_create'));
             add_action('wp_ajax_aymakan_manual_shipping_create', array($this, 'aymakan_manual_shipping_create'));
 
+            // Bulk Shipping Create
             add_action('wp_ajax_nopriv_aymakan_bulk_shipping_create', array($this, 'aymakan_bulk_shipping_create'));
             add_action('wp_ajax_aymakan_bulk_shipping_create', array($this, 'aymakan_bulk_shipping_create'));
+
+            // Bulk AWB Create
+            add_action('wp_ajax_nopriv_aymakan_bulk_awb_create', array($this, 'aymakan_bulk_awb_create'));
+            add_action('wp_ajax_aymakan_bulk_awb_create', array($this, 'aymakan_bulk_awb_create'));
 
             $this->setup_hooks();
         }
@@ -125,6 +130,59 @@ class Aymakan_Shipping_Create
     }
 
     /**
+     * Create Bulk AWB with Aymakan
+     *
+     * @throws JsonException
+     */
+    public function aymakan_bulk_awb_create()
+    {
+        $param = isset($_POST['data']) ? wp_parse_args($_POST['data']) : array();
+
+        $ids = [];
+
+        if (isset($param['id'])) {
+            $ids = $param['id'];
+        } else if(isset($param['post'])) {
+            $ids = $param['post'];
+        }
+
+        if (!$ids) {
+            echo json_encode([
+                [
+                    [
+                        'id'      => 0,
+                        'error'   => true,
+                        'message' => esc_html__('Please select an order.', 'aymakan'),
+                    ]
+                ]
+            ], JSON_THROW_ON_ERROR);
+            die();
+        }
+
+        try {
+            $tracking = [];
+            foreach ($ids as $id) {
+                $getMeta = get_post_meta($id, 'aymakan_shipping', true);
+                $meta = $getMeta ? json_decode($getMeta, true) : [];
+                foreach ($meta as $key => $value) {
+                    $tracking[] = $value['tracking_number'];
+                }
+            }
+
+            $references = implode(',', array_filter($tracking));
+
+            $response = $this->helper->api_request("/shipping/bulk_awb/references/$references");
+            echo $response;
+            die();
+
+        } catch (JsonException $e) {
+            if ('yes' === $this->helper->get_option('debug')) {
+                $this->log->add($this->id, esc_html(var_dump($e->getMessage())));
+            }
+        }
+    }
+
+    /**
      * Create Bulk Shipping with Aymakan
      *
      * @throws JsonException
@@ -191,6 +249,8 @@ class Aymakan_Shipping_Create
         } catch (JsonException $e) {
             if ('yes' === $this->helper->get_option('debug')) {
                 $this->log->add($this->id, esc_html(var_dump($e->getMessage())));
+                echo json_encode(['error' => true, 'message' => $e->getMessage()], JSON_THROW_ON_ERROR);
+                die();
             }
         }
     }
@@ -224,7 +284,7 @@ class Aymakan_Shipping_Create
                 $collectionCity = $this->helper->get_option('collection_city');
             }
 
-            $description .= esc_html($this->getProductShippingDescription($order, $item));
+            $description .= esc_html($this->get_product_shipping_description($order, $item));
 
             $collections[$vendorId] = array(
                 'reference'                => esc_html($reference),
@@ -340,7 +400,7 @@ class Aymakan_Shipping_Create
         return $return;
     }
 
-    public function getProductShippingDescription($order, $item)
+    public function get_product_shipping_description($order, $item)
     {
         $product = $item->get_product();
 
@@ -384,7 +444,8 @@ class Aymakan_Shipping_Create
      */
     public function aymakan_bulk_shipment_actions($actions)
     {
-        $actions['aymakan_bulk_shipment'] = __('Create Aymakan Shipments', 'aymakan');
+        $actions['aymakan_bulk_shipment'] = __('Aymakan Create Bulk Shipments', 'aymakan');
+        $actions['aymakan_bulk_awb'] = __('Aymakan Print Bulk AWB', 'aymakan');
         return $actions;
     }
 
@@ -443,6 +504,7 @@ class Aymakan_Shipping_Create
         $order_id = $this->hpos_enabled === 'yes' ? $order->get_id() : $order;
 
         $shippings = get_post_meta($order_id, 'aymakan_shipping', true);
+        $status = get_post_meta($order_id, 'aymakan_shipping_status', true);
 
         $trackingLink = $pdfLink = $hasError = '';
         if (!empty($shippings)) {
@@ -478,8 +540,12 @@ class Aymakan_Shipping_Create
         }
 
         if (('aymakan-tracking' === $column) && $trackingLink && !empty($trackingLink)) {
+
+            $aymakanStatusDecode = $status ? json_decode($status, true) : '';
+            $aymakanStatus = isset($aymakanStatusDecode['description']) ? ' '.$aymakanStatusDecode['description'] : __('Tracking', 'aymakan');
+
             echo '<ul class="aymakan-dropdown ' . $hasError . '">';
-            echo '<li><span class="order-status aymakan-btn aymakan-shipping-track-btn">' . __('Tracking', 'aymakan') . '</span><ul>';
+            echo '<li><span class="order-status aymakan-btn aymakan-shipping-track-btn">' . $aymakanStatus . '</span><ul>';
             echo $trackingLink;
             echo '</li></ul>';
         }
